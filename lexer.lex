@@ -12,6 +12,8 @@ alpha    [a-zA-Z]
 "int"                                {return TokenTInt;}
 "bool"                               {return TokenTBool;}
 //If
+"if"                                 {return TokenIf;}
+"else"                               {return TokenElse;}
 //While
 "while"                              {return TokenWhile;}
 //Types and variables
