@@ -1,0 +1,26 @@
+TokenInt
+TokenBool
+TokenString
+
+TokenPlus
+TokenMinus
+TokenTimes
+TokenDivide
+
+TokenIf
+TokenElse
+TokenWhile
+
+TokenOpenp
+TokenClosep
+TokenOpenB
+TokenCloseB
+
+TokenAtribute "="
+TokenCompare "=="
+TokenLess "<"
+TokenGreater ">"
+TokenLessE "<="
+TokenGreaterE ">="
+TokenSemiColon
+

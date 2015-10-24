@@ -15,7 +15,7 @@ POINTER  [*][a-z][a-z0-9]*
 %%
 
 {DIGIT}+    {
-  printf( "TokenInt \t%d\n", yytext,
+  printf( "TokenInt\tt%s\n", yytext,
 	  atoi( yytext ) );
        }
 
@@ -29,20 +29,26 @@ else    printf("TokenElse\n",yytext);
 while   printf("TokenWhile\n",yytext);
 
 true|false {
-  printf( "TokenBool/t%s\n", yytext);
+  printf( "TokenBool\t%s\n", yytext);
 }
 
          {OPENP}     printf("TokenOpenp\n",yytext);
 	 {CLOSEP}    printf("TokenCloseP\n",yytext);
-         {ID}        printf("TokenString \t%s\n", yytext);
-         {POINTER}   printf("TokenPointer \t%s\n", yytext);
+         {ID}        printf("TokenString\t%s\n", yytext);
+         {POINTER}   printf("TokenPointer\t%s\n", yytext);
 "+"   printf( "TokenPlus\n", yytext );
 "-"   printf( "TokenMinus\n", yytext );
 "*"   printf( "TokenTimes\n", yytext );
 "/"   printf( "TokenDivide\n", yytext );
 "{"   printf( "TokenOpenB\n",yytext);
 "}"   printf( "TokenCloseB\n",yytext);
-
+"="   printf("TokenAtribute\n",yytext);
+"=="  printf("TokenCompare\n",yytext);
+"<"   printf("TokenLess\n",yytext);
+">"   printf("TokenGreater\n",yytext);
+"<="  printf("TokenLessE\n",yytext);
+">="  printf("TokenGreaterE\n",yytext);
+";"   printf("TokenSemiColon\n",yytext);
 "{"[\^{}}\n]*"}"     /* eat up one-line comments */
 
 [ \t\n]+          /* eat up whitespace */
