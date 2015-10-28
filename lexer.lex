@@ -1,4 +1,4 @@
-//picking up the code from Duarte
+/* picking up the code from Duarte */
 %{
 #include "y.tab.h"
 #include <stdlib.h>
@@ -8,19 +8,20 @@ digit    [0-9]
 alpha    [a-zA-Z]
 
 %%
-//Types
-"int"                                {return TokenTInt;}
+"int"                                {return TokenTInt;}    /* Types */
 "bool"                               {return TokenTBool;}
-//If
-"if"                                 {return TokenIf;}
+
+"if"                                 {return TokenIf;}      /* If */
 "else"                               {return TokenElse;}
-//While
-"while"                              {return TokenWhile;}
-//Types and variables
-{digit}+                             {yylval = atoi(yytext);
+
+"while"                              {return TokenWhile;}   /* While */
+
+{digit}+                             {yylval = atoi(yytext); /* Types and variables */
 				      return TokenInt; }
+
 "true"                               {return TokenTrue;}
 "false"                              {return TokenFalse;}
+
 {alpha}({alpha}|{digit})*            {yylval.id = strdup(yytext);
 				      return TokenVar;}
 %%
