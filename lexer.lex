@@ -8,22 +8,41 @@ digit    [0-9]
 alpha    [a-zA-Z]
 
 %%
-"int"                                {return TokenTInt;}      /* Types */
-"bool"                               {return TokenTBool;}
+   /* Types */
+"int"                                {return INT;}
+"bool"                               {return BOOL;}
 
-"if"                                 {return TokenIf;}        /* If */
-"else"                               {return TokenElse;}
+   /*If and Else */
+"if"                                 {return IF;}
+"else"                               {return ELSE;}
 
-"while"                              {return TokenWhile;}     /* While */
+   /* While */
+"while"                              {return WHILE;}
 
-{digit}+                             {yylval = atoi(yytext);  /* Types and variables */
-				      return TokenInt; }
+   /* Types and variables */
+{digit}+                             {yylval.intVal = atoi(yytext);
+				      return NUM; }
 
-"true"                               {return TokenTrue;}      
-"false"                              {return TokenFalse;}
+"true"                               {return TRUE;}      
+"false"                              {return FALSE;}
 
-{alpha}({alpha}|{digit})*            {yylval.id = strdup(yytext);
-				      return TokenVar;}
+{alpha}({alpha}|{digit})*            {yylval.strVal = strdup(yytext);
+				      return VAR;}
+
+   /* Arithmetic Expressions */
+"+"                                  {return PLUS;}
+"-"                                  {return MINUS;}
+"*"                                  {return TIMES;}
+"/"                                  {return DIV;}
+"%"                                  {return MOD;}
+"("                                  {return LP;}
+")"                                  {return RP;}
+
+   /* Boolean Expressions */
+"!"                                  {return NEG;}
+"||"                                 {return OR;}
+"&&"                                 {return AND;}
+
 %%
 
 int yywrap(void){return 1;}

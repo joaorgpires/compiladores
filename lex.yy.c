@@ -474,7 +474,7 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "lexer.lex"
-/* picking up the code from Duarte */
+/* picking up the code from Duarte QUANDO COMPILAR DEPOIS NO BISON USAR FLAG -d PARA TER UM FICHEIRO .h QUE VAI TER OS TOKENS TODOS. INCULUIR ISSO AQUI E GARANTE-SE QUE OS TOKENS SAO IGUAIS */
 #line 3 "lexer.lex"
 #include "y.tab.h"
 #include <stdlib.h>
@@ -667,7 +667,8 @@ YY_DECL
     
 #line 10 "lexer.lex"
 
-#line 671 "lex.yy.c"
+   /* Types */
+#line 672 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -752,57 +753,60 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "lexer.lex"
-{return TokenTInt;}    /* Types */
+#line 12 "lexer.lex"
+{return TokenInt;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 12 "lexer.lex"
-{return TokenTBool;}
+#line 13 "lexer.lex"
+{return TokenBool;}
 	YY_BREAK
+/*If and Else */
 case 3:
 YY_RULE_SETUP
-#line 14 "lexer.lex"
-{return TokenIf;}      /* If */
+#line 16 "lexer.lex"
+{return TokenIf;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 "lexer.lex"
+#line 17 "lexer.lex"
 {return TokenElse;}
 	YY_BREAK
+/* While */
 case 5:
 YY_RULE_SETUP
-#line 17 "lexer.lex"
-{return TokenWhile;}   /* While */
+#line 20 "lexer.lex"
+{return TokenWhile;}
 	YY_BREAK
+/* Types and variables */
 case 6:
 YY_RULE_SETUP
-#line 19 "lexer.lex"
-{yylval = atoi(yytext); /* Types and variables */
-				      return TokenInt; }
+#line 23 "lexer.lex"
+{yylval.intVal = atoi(yytext);
+				      return NUM; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "lexer.lex"
-{return TokenTrue;}
+#line 26 "lexer.lex"
+{return TokenTrue;}      
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "lexer.lex"
+#line 27 "lexer.lex"
 {return TokenFalse;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 25 "lexer.lex"
-{yylval.id = strdup(yytext);
-				      return TokenVar;}
+#line 29 "lexer.lex"
+{yylval.strVal = strdup(yytext);
+				      return VAR;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 27 "lexer.lex"
+#line 31 "lexer.lex"
 ECHO;
 	YY_BREAK
-#line 806 "lex.yy.c"
+#line 810 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1800,7 +1804,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 27 "lexer.lex"
+#line 31 "lexer.lex"
 
 
 

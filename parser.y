@@ -4,12 +4,23 @@
 
 %}
 
-  /* Something missing */
+%union
+{
+  int intVal;
+  char *strVal;
+}
 
-%token TokenInt
+%token <intVal> NUM
+%token <strVal> VAR
+%token PLUS
+%token MINUS
+%token TIMES
+%token DIV
+%left MINUS PLUS
+%left TIMES DIV
 
 %%
-exp :    TokenInt             { $$ = $1;       }
+exp :    NUM                  { $$ = $1;       }
       |  exp '+' exp          {                }
       |  exp '-' exp          {                }
       |  exp '*' exp          {                }
