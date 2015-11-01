@@ -39,11 +39,20 @@ alpha    [a-zA-Z]
 ")"                                  {return RP;}
 "{"                                  {return LB;}
 "}"                                  {return RB;}
+";"                                  {return SC;}
+","                                  {return COM;}
 
    /* Boolean Expressions */
 "!"                                  {return NEG;}
 "||"                                 {return OR;}
 "&&"                                 {return AND;}
+"=="                                 {return EQ;}
+"<"                                  {return GT;}
+">"                                  {return LT;}
+"<="                                 {return LE;}
+">="                                 {return GE;}
+"!="                                 {return NEQ;}
+
    /* Anything else */
 .                                    {printf("Lexical error: %s\n", yytext);
                                       exit(1);}
