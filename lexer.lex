@@ -54,6 +54,7 @@ alpha    [a-zA-Z]
 "!="                                 {return NEQ;}
 
    /* Anything else */
+"\n"                                 {}
 .                                    {printf("Lexical error: %s\n", yytext);
                                       exit(1);}
 

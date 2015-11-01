@@ -368,8 +368,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 31
-#define YY_END_OF_BUFFER 32
+#define YY_NUM_RULES 32
+#define YY_END_OF_BUFFER 33
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,9 +379,9 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[60] =
     {   0,
-        0,    0,   32,   30,   31,   21,   14,   30,   15,   16,
-       12,   10,   20,   11,   13,    6,   19,   25,   30,   26,
-        9,    9,    9,    9,    9,    9,    9,   17,   30,   18,
+        0,    0,   33,   31,   30,   21,   14,   31,   15,   16,
+       12,   10,   20,   11,   13,    6,   19,   25,   31,   26,
+        9,    9,    9,    9,    9,    9,    9,   17,   31,   18,
        29,   23,    6,   27,   24,   28,    9,    9,    9,    9,
         3,    9,    9,    9,   22,    9,    9,    9,    1,    9,
         9,    2,    4,    9,    7,    9,    8,    5,    0
@@ -925,17 +925,23 @@ YY_RULE_SETUP
 	YY_BREAK
 /* Anything else */
 case 30:
+/* rule 30 can match eol */
 YY_RULE_SETUP
 #line 57 "lexer.lex"
-{printf("Lexical error: %s\n", yytext);
-                                      exit(1);}
+{}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 60 "lexer.lex"
+#line 58 "lexer.lex"
+{printf("Lexical error: %s\n", yytext);
+                                      exit(1);}
+	YY_BREAK
+case 32:
+YY_RULE_SETUP
+#line 61 "lexer.lex"
 ECHO;
 	YY_BREAK
-#line 939 "lex.yy.c"
+#line 945 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1933,7 +1939,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 60 "lexer.lex"
+#line 61 "lexer.lex"
 
 
 
