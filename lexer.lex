@@ -37,11 +37,16 @@ alpha    [a-zA-Z]
 "%"                                  {return MOD;}
 "("                                  {return LP;}
 ")"                                  {return RP;}
+"{"                                  {return LB;}
+"}"                                  {return RB;}
 
    /* Boolean Expressions */
 "!"                                  {return NEG;}
 "||"                                 {return OR;}
 "&&"                                 {return AND;}
+   /* Anything else */
+.                                    {printf("Lexical error: %s\n", yytext);
+                                      exit(1);}
 
 %%
 
