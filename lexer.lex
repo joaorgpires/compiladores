@@ -1,6 +1,6 @@
 /* picking up the code from Duarte QUANDO COMPILAR DEPOIS NO BISON USAR FLAG -d PARA TER UM FICHEIRO .h QUE VAI TER OS TOKENS TODOS. INCULUIR ISSO AQUI E GARANTE-SE QUE OS TOKENS SAO IGUAIS */
 %{
-#include "y.tab.h"
+#include "parser.tab.h"
 #include <stdlib.h>
 %}
 
@@ -26,7 +26,7 @@ alpha    [a-zA-Z]
 "true"                               {return TRUE;}      
 "false"                              {return FALSE;}
 
-{alpha}({alpha}|{digit})*            {yylval.strVal = strdup(yytext);
+{alpha}({alpha}|{digit})*            {strcpy(yylval.strVal, yytext);
 				      return VAR;}
 
    /* Arithmetic Expressions */
