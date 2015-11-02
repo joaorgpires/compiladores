@@ -55,9 +55,11 @@ alpha    [a-zA-Z]
 
    /* Anything else */
 "\n"                                 {}
-.                                    {printf("Lexical error: %s\n", yytext);
+"\t"                                 {}
+" "                                  {}
+.                                    {printf("Lexical error\n");
                                       exit(1);}
 
 %%
 
-int yywrap(void){return 1;}
+int yywrap(void){yylex(); return 1;}
