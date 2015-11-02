@@ -1,6 +1,7 @@
   /* parser to be done here */
 
 %{
+#include "abssyn.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,17 +37,34 @@ yyerror (s)  /* Called by yyparse on error */
 %token TIMES
 %token DIV
 
-%left MINUS PLUS
-%left TIMES DIV
+%nonassoc NEG EQ GT LT LE GE NEQ
 
-%type <intVal> exp
+%left OR
+%left AND
+%left MINUS PLUS
+%left TIMES DIV MOD
+%left SC COM
+
+%type <intVal, strVal> exp
 
 %%
-exp :    NUM                  { $$ = $1;       }
- //   |  exp '+' exp          {                }
- //   |  exp '-' exp          {                }
- //   |  exp '*' exp          {                }
- //   |  exp '/' exp          {                }
+exp :    NUM                      { }
+      |  exp PLUS exp             { }
+      |  exp MINUS exp            { }
+      |  exp TIMES exp            { }
+      |  exp DIV exp              { }
+      |  exp MOD exp              { }
+      |  exp OR exp               { }
+      |  exp AND exp              { }
+      |  exp EQ exp               { }
+      |  exp NEQ exp              { }
+      |  exp LT exp               { }
+      |  exp LE exp               { }
+      |  exp GT exp               { }
+      |  exp GE exp               { }
+      |  NEG exp                  { }
+      |  LP exp RP                { }
+      |  VAR                      { }
 ;
 %%
 
