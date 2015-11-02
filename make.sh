@@ -1,2 +1,3 @@
-flex czero.lex && gcc lex.yy.c -o czero && ./czero  
-rm lex.yy.c
+flex lexer.lex
+bison -d parser.y
+gcc lex.yy.c parser.tab.c
