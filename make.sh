@@ -1,3 +1,3 @@
 flex lexer.lex
 bison -d parser.y
-gcc lex.yy.c parser.tab.c
+gcc parser.tab.c lex.yy.c abssyn.c

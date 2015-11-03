@@ -47,33 +47,39 @@ extern int yydebug;
   {
     NUM = 258,
     VAR = 259,
-    INT = 260,
-    BOOL = 261,
-    IF = 262,
-    ELSE = 263,
-    WHILE = 264,
-    TRUE = 265,
-    FALSE = 266,
-    MOD = 267,
-    LP = 268,
-    RP = 269,
-    LB = 270,
-    RB = 271,
-    SC = 272,
-    COM = 273,
-    NEG = 274,
-    OR = 275,
-    AND = 276,
-    EQ = 277,
-    GT = 278,
-    LT = 279,
-    LE = 280,
-    GE = 281,
-    NEQ = 282,
-    PLUS = 283,
-    MINUS = 284,
-    TIMES = 285,
-    DIV = 286
+    BOOLVAL = 260,
+    INT = 261,
+    BOOL = 262,
+    IF = 263,
+    ELSE = 264,
+    WHILE = 265,
+    TRUE = 266,
+    FALSE = 267,
+    MOD = 268,
+    LP = 269,
+    RP = 270,
+    LB = 271,
+    RB = 272,
+    SC = 273,
+    COM = 274,
+    NEG = 275,
+    OR = 276,
+    AND = 277,
+    EQ = 278,
+    GT = 279,
+    LT = 280,
+    LE = 281,
+    GE = 282,
+    NEQ = 283,
+    ATTR = 284,
+    MAIN = 285,
+    RETURN = 286,
+    QM = 287,
+    COL = 288,
+    PLUS = 289,
+    MINUS = 290,
+    TIMES = 291,
+    DIV = 292
   };
 #endif
 
@@ -86,8 +92,12 @@ union YYSTYPE
 
   int intVal;
   char strVal[100];
+  bool boolVal;
+  Exp e;
+  Cmd c;
+  Prg p;
 
-#line 91 "parser.tab.h" /* yacc.c:1909  */
+#line 101 "parser.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

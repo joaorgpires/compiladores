@@ -1,5 +1,6 @@
 /* picking up the code from Duarte QUANDO COMPILAR DEPOIS NO BISON USAR FLAG -d PARA TER UM FICHEIRO .h QUE VAI TER OS TOKENS TODOS. INCULUIR ISSO AQUI E GARANTE-SE QUE OS TOKENS SAO IGUAIS */
 %{
+#include "abssyn.h"
 #include "parser.tab.h"
 #include <stdlib.h>
 %}
@@ -8,6 +9,10 @@ digit    [0-9]
 alpha    [a-zA-Z]
 
 %%
+   /* New Program */
+"main"                               {return MAIN;}
+"return 0"                           {return RETURN;}
+
    /* Types */
 "int"                                {return INT;}
 "bool"                               {return BOOL;}
@@ -23,11 +28,16 @@ alpha    [a-zA-Z]
 {digit}+                             {yylval.intVal = atoi(yytext);
 				      return NUM; }
 
-"true"                               {return TRUE;}      
-"false"                              {return FALSE;}
+"true"                               {yylval.boolVal = true;
+				      return BOOLVAL;}      
+"false"                              {yylval.boolVal = false;
+				      return BOOLVAL;}
 
 {alpha}({alpha}|{digit})*            {strcpy(yylval.strVal, yytext);
 				      return VAR;}
+
+   /* Atrib */
+"="                                  {return ATTR;}
 
    /* Arithmetic Expressions */
 "+"                                  {return PLUS;}
@@ -41,6 +51,8 @@ alpha    [a-zA-Z]
 "}"                                  {return RB;}
 ";"                                  {return SC;}
 ","                                  {return COM;}
+"?"                                  {return QM;}
+":"                                  {return COL;}
 
    /* Boolean Expressions */
 "!"                                  {return NEG;}
@@ -62,4 +74,4 @@ alpha    [a-zA-Z]
 
 %%
 
-int yywrap(void){yylex(); return 1;}
+int yywrap(void){return 1;}
