@@ -101,6 +101,13 @@ Cmd BoolTest(Exp tst, Cmd ttst, Cmd ftst) {
   return p;
 }
 
+Cmd SCmd(Cmd c) {
+  Cmd p = malloc(sizeof(*p));
+  p->kind = sCmd;
+  p->cmdtype.cm = c;
+  return p;
+}
+
 Prg PrgEps() {
   Prg p = malloc(sizeof(*p));
   p->kind = eps;
@@ -115,4 +122,8 @@ Prg PrgNotEps(Cmd c) {
   p->cm = c;
   //printf("Test also ok.\n");
   return p;
+}
+
+void printTree(Prg p) {
+  
 }

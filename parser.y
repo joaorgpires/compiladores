@@ -57,23 +57,30 @@ yyerror (s)  /* Called by yyparse on error */
 %type <c> cmd
 %type <e> exp
 %type <p> prg
+%type <c> whi
 
 %start prg
 
 %%
 
-prg :    INT MAIN LP RP LB cmd RETURN SC RB    { $$ = PrgNotEps($6);          }
-      |  INT MAIN LP RP LB RETURN SC RB        { $$ = PrgEps();               }
+prg :    INT MAIN LP RP LB cmd RETURN SC RB    { $$ = PrgNotEps($6); printTree($$); }
+      |  INT MAIN LP RP LB RETURN SC RB        { $$ = PrgEps();                     }
 ;
 
 cmd :    VAR ATTR exp                          { $$ = Attr($1, $3);           }
       |  INT VAR ATTR exp                      { $$ = DecAt(Int, $2, $4);     }
       |  BOOL VAR ATTR exp                     { $$ = DecAt(Bool, $2, $4);    }
-      |  WHILE LP exp RP LB cmd RB             { $$ = WhileExp($3, $6);       }
-      |  IF LP exp RP LB cmd RB ELSE LB cmd RB { $$ = IfElseExp($3, $6, $10); }
-      |  IF LP exp RP LB cmd RB                { $$ = IfExp($3, $6);          }
+      |  INT VAR                               { $$ = Dec(Int, $2);           }
+      |  BOOL VAR                              { $$ = Dec(Bool, $2);          }
+      |  WHILE LP exp RP whi                   { $$ = WhileExp($3, $5);       }
+      |  IF LP exp RP whi ELSE whi             { $$ = IfElseExp($3, $5, $7);  }
+      |  IF LP exp RP whi                      { $$ = IfExp($3, $5);          }
       |  cmd SC                                { $$ = $1;                     }
       |  cmd SC cmd                            { $$ = CmdSeq($1, $3);         }
+;
+
+whi :    LB cmd RB                             { $$ = SCmd($2);               }
+      |  cmd                                   { $$ = SCmd($1);               }
 ;
 
 exp :    exp PLUS exp                          { $$ = OpExp($1, Plus, $3);    }

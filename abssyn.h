@@ -24,7 +24,7 @@ struct BinExp {
 };
 
 struct Com {
-  enum {whileExp, ifExp, ifElseExp, attr, dec, decAt, cmdSeq, boolTest} kind;
+  enum {whileExp, ifExp, ifElseExp, attr, dec, decAt, cmdSeq, boolTest, sCmd} kind;
   union {
     struct {Exp test; Cmd doo;} WH;
     struct {Exp test; Cmd cm;} IF;
@@ -34,6 +34,7 @@ struct Com {
     struct {Type ty; char var[100]; Exp ex;} DECAT;
     struct {Cmd cmd1; Cmd cmd2;} CMDSEQ;
     struct {Exp expTest; Cmd tTest; Cmd fTest;} BOOLTEST;
+    Cmd cm;
   } cmdtype;
 };
 
@@ -49,7 +50,9 @@ Cmd Dec(Type t, char n[100]);
 Cmd DecAt(Type t, char n[100], Exp res);
 Cmd CmdSeq(Cmd c1, Cmd c2);
 Cmd BoolTest(Exp tst, Cmd ttst, Cmd ftst);
+Cmd SCmd(Cmd c);
 Prg PrgEps();
 Prg PrgNotEps(Cmd c);
+void printTree(Prg p);
 
 #endif
