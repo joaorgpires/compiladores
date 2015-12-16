@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "abssyn.h"
+#include "icg.h"
+
+Prg p;
 
 yyerror (s)  /* Called by yyparse on error */
      char *s;
@@ -63,8 +66,8 @@ yyerror (s)  /* Called by yyparse on error */
 
 %%
 
-prg :    INT MAIN LP RP LB cmd RETURN SC RB    { $$ = PrgNotEps($6); printTree($$); }
-      |  INT MAIN LP RP LB RETURN SC RB        { $$ = PrgEps();                     }
+prg :    INT MAIN LP RP LB cmd RETURN SC RB    { $$ = PrgNotEps($6); p = $$; }
+      |  INT MAIN LP RP LB RETURN SC RB        { $$ = PrgEps(); p = NULL;    }
 ;
 
 cmd :    VAR ATTR exp                          { $$ = Attr($1, $3);           }
@@ -104,7 +107,28 @@ exp :    exp PLUS exp                          { $$ = OpExp($1, Plus, $3);    }
 ;
 %%
 
-main()
-{
-yyparse();
+int main(int argc, char **argv) {
+  char fname[200] = "a";
+  int i;
+  
+  for(i = 1; i < argc; i++) {
+    if(!strcmp(argv[i], "-h")){
+      printf("Usage: %s <file name> <options>\n", argv[0]);
+      printf("Options:\n");  
+      printf("\t-o <file name>\tName the generated MIPS file.\n");  
+      //printf("\t--print-tac\tPrint the generated Three Address Code.\n");  
+      return 0;
+    }
+    else if(i < argc - 1 && !strcmp(argv[i], "-o") && strlen(argv[i + 1]) < 195)
+      strcpy(fname, argv[i + 1]);
+  }
+  
+  if(argc < 2){
+    printf("Usage: %s <file name> <options>\n", argv[0]);
+    printf("Use -h flag to see all options.\n");
+    return -1;
+  }
+  
+  yyparse();
+  compile(p, fname);
 }

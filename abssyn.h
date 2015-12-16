@@ -4,6 +4,7 @@
 typedef struct BinExp *Exp;
 typedef struct Com *Cmd;
 typedef struct Prgm *Prg;
+typedef struct ST *SymTab;
 typedef enum {Plus, Minus, Times, Div, Mod, Or, And, Eq, Neq, Lt, Le, Gt, Ge} BinOp;
 typedef enum {Int, Bool} Type;
 typedef enum {false, true} bool;
@@ -54,5 +55,6 @@ Cmd SCmd(Cmd c);
 Prg PrgEps();
 Prg PrgNotEps(Cmd c);
 void printTree(Prg p);
+void genAddr(Cmd c);
 
 #endif
