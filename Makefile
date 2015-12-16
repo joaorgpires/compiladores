@@ -21,4 +21,4 @@ lex.yy.o: lexer.lex
 	${CCC} lex.yy.c -c
 
 clean:
-	/bin/rm -f lex.yy.* y.tab.* *.o *.asm compiler
+	/bin/rm -f lex.yy.* parser.tab.* *.o *.asm compiler
